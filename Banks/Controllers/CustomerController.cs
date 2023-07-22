@@ -5,7 +5,7 @@ namespace Banks.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
-    public class CustomerController : Controller
+    public class CustomerController : ControllerBase
     {
         private readonly CustomerDbContext _context;
         public CustomerController(CustomerDbContext context) 
@@ -52,3 +52,4 @@ namespace Banks.Controllers
         }
     }
 }
+ 

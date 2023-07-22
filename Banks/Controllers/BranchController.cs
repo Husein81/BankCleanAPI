@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Banks.Controllers
 {
-    public class BranchController : Controller
+    public class BranchController : ControllerBase
     {
         private readonly CustomerDbContext _context;
         public BranchController(CustomerDbContext context)
