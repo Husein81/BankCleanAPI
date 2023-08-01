@@ -40,7 +40,7 @@ namespace Banks.Controllers
         [HttpDelete]
         public async Task DeleteBranch(int id)
         {
-            var branch=await _context.Branch.Include(branch=> branch.Id == id).FirstOrDefaultAsync(x=>x.Id==id)
+            var branch=await _context.Branch.FirstOrDefaultAsync(x=>x.Id==id)
                 ??throw new Exception("Not Found");
             _context.Remove(branch);
             await _context.SaveChangesAsync();
