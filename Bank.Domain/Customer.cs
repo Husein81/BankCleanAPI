@@ -1,4 +1,4 @@
-﻿namespace Banks
+﻿namespace Bank.Domain
 {
     public class Customer
     {

@@ -1,32 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
+using Bank.Domain;
+using Bank.Application.Commands;
 
-namespace Banks.Controllers
+namespace Bank.Api.Controllers
 {
     public class BranchController : ControllerBase
     {
-        private readonly CustomerDbContext _context;
-        public BranchController(CustomerDbContext context)
-        {
-            _context = context;
-        }
+        private readonly IMediator _mediator;
+        public BranchController(IMediator mediator)
+             => _mediator = mediator;
         [HttpPost]
-        public async Task<Branch> AddBranch(string name,string address,double assets)
-        {
-            var newbranch = await _context.Branch.AddAsync(new Branch(name, address, assets));
-            await _context.SaveChangesAsync();
-            return newbranch.Entity;
-        }
+        public async Task<BranchDTO> AddBranch(CreateBranchCommand command)
+             => await _mediator.Send(command);
+
         [HttpPut]
-        public async Task<Branch> UpdateBranch(int id,string name ,string address,double assets)
-        {
-            var branch = await _context.Branch.FirstOrDefaultAsync(x => x.Id == id)
-                ?? throw new Exception("Not Found");
-            branch.Update(name,address,assets);
-            _context.Update(branch);
-            await _context.SaveChangesAsync();
-            return branch;
-        }
+        public async Task<BranchDTO> UpdateBranch(UpdateBranchCommand command)
+            => await _mediator.Send(command);
+        
         [HttpGet]
         public async Task<List<Customer>> GetBranchAsync()
         {
@@ -38,12 +30,8 @@ namespace Banks.Controllers
             return await _context.Branch.FirstOrDefaultAsync(x => x.Id == id);
         }
         [HttpDelete]
-        public async Task DeleteBranch(int id)
-        {
-            var branch=await _context.Branch.Include(branch=> branch.Id == id).FirstOrDefaultAsync(x=>x.Id==id)
-                ??throw new Exception("Not Found");
-            _context.Remove(branch);
-            await _context.SaveChangesAsync();
-        }
+        public async Task DeleteBranch(DeleteBranchCommand command)
+             => await _mediator.Send(command);
+      
     }
 }

@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using MediatR;
+using Bank.Domain;
+using Bank.Application.DTOs;
+using Bank.Application.Commands;
+
 
 namespace Banks.Controllers
 {
@@ -7,8 +11,8 @@ namespace Banks.Controllers
     [Route("[Controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly CustomerDbContext _context;
-        public CustomerController(CustomerDbContext context) 
+        private readonly AppDbContext _context;
+        public CustomerController(AppDbContext context) 
         {
             _context = context;
         }
@@ -45,6 +49,7 @@ namespace Banks.Controllers
         {
             return await _context.Customer.ToListAsync();
         }
+
         [HttpGet("GetCustomerId")]
         public async Task<Customer> GetCustomerByIDAsync(int id)
         {

@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Banks.Migrations
+namespace Bank.Infrastructure.Migrations
 {
-    [DbContext(typeof(CustomerDbContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class CustomerDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

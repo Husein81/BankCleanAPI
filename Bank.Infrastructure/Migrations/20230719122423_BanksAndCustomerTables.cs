@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-
+using Banks;
 #nullable disable
 
-namespace Banks.Migrations
+namespace Bank.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class BanksAndcustomerTables : Migration
