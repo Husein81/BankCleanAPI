@@ -3,24 +3,25 @@ using Bank.Domain;
 
 using SQLitePCL;
 using Microsoft.EntityFrameworkCore;
+using Bank.Infrastructure.Exceptions;
 
 
 namespace Bank.Infrastructure.Repositories
 {
-    internal class CustomerRepository : BaseRepository<Customer>, IBranchRepository
+    internal class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     {
         private readonly AppDbContext _context;
         private readonly DbSet<Customer> _customer;
-        public CustomerRepository(AppDbContext context, DbSet<Customer> customer)
+        public CustomerRepository(AppDbContext context) : base(context) 
         {
             _context = context;
             _customer = _context.Set<Customer>();
         }
-        public async Task<Customer> AddAsync(Customer customer)
-        {
-            var addedcustomer = await _customer.AddAsync(customer);
-            await _context.SaveChangesAsync();
-            return addedcustomer;
-        }
+        public async Task<IEnumerable<Customer>> GetWholeAsync(CancellationToken cancellationToken)
+            => await _customer.Include(x => x.Branches).ToListAsync(cancellationToken);
+
+        public async Task<Customer> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
+            => await _customer.Include(x => x.Id).FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
+                ?? throw new NotFoundException(typeof(Customer).Name, id);
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MediatR;
+using Bank.Application.DTOs;
 namespace Bank.Application.Commands.BranchCommands
 {
-    internal class DeleteBranchCommand
-    {
-    }
+    public record DeleteBranchCommand(int id) : IRequest<BranchDTO>;
 }

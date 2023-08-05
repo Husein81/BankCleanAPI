@@ -1,10 +1,11 @@
 ﻿using Bank.Domain;
+using Microsoft.Extensions.Hosting;
 
 namespace Bank.Application.Repositories
 {
     public interface IBranchRepository : IBaseRepository<Branch>
     {
-        Task<Branch> AddBranchAsync(int id, string name, string address, double assets);
-        Task<Branch> DeleteBranchAsync(int id);
+        public Task<IEnumerable<Branch>> GetWholeAsync(CancellationToken cancellationToken);
+        public Task<Branch> GetWholeByIdAsync(int id, CancellationToken cancellationToken);
     } 
 }

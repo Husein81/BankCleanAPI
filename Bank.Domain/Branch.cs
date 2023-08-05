@@ -13,6 +13,7 @@ namespace Bank.Domain
             Name = name;
             Address = address;  
             Assets = assets;
+    
         }
         public void Update(string name,string address,double assets)
         {
@@ -20,6 +21,10 @@ namespace Bank.Domain
             Address = address;
             Assets = assets;
         }
-
+        public void UpdateCustomer(List<Customer> customers)
+        {
+            Customers.AddRange(customers?.Where(newItem => !customers.Contains(newItem))?? Enumerable.Empty<Customer>());
+            Customers.RemoveAll(oldItem => !customers?.Contains(oldItem) ?? true);
+        }
     }
 }

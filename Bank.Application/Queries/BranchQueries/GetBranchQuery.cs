@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bank.Application.DTOs;
+using Bank.Shared.Queries;
 
-namespace Bank.Shared.Queries.BranchQueries
+namespace Bank.Application.Queries.BranchQueries
 {
-    internal class GetBranchQuery
-    {
-    }
+  public record GetBranchQuery(int Id) : IQuery<BranchDTO>;
 }

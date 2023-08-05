@@ -1,19 +1,27 @@
 ﻿using MediatR;
 using Bank.Application.Repositories;
+using Bank.Shared.Commands;
+using Bank.Shared;
 
 namespace Bank.Application.Commands.CustomerCommands.Handlers
 {
-    public class DeleteCustomerHandler : IRequestHandler<DeleteCustomerCommad, Unit>
+    public class DeleteCustomerHandler : ICommandHandler<DeleteCustomerCommand, Unit>
     {
-        private readonly ICustomerRepository _customerRepository;
-        public DeleteCustomerCommadHandler(ICustomerRepository customerRepository)
+        private readonly ICustomerRepository _customer;
+        public DeleteCustomerHandler(ICustomerRepository customer)
         {
-            _customerRepository = customerRepository;
+            _customer = customer;
         }
-        public async Task<Unit> DeleteHandle(DeleteCustomerCommad request,CancellationToken cancellationToken)
+        public async Task<Response<Unit>> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
-            await CustomerRepository.DeleteAsync(request.id);
-            return Unit.Value;
+            var customer = await _customer.GetByIdAsync(request.id,cancellationToken);
+            if (customer.Branches is not null)
+                foreach (var cust in customer.Branches)
+                    customer.Branches.Remove(cust);
+            await _customer.UpdateAsync(customer, cancellationToken);
+            await _customer.DeleteAsync(request.id,cancellationToken);
+            return Response.Success(Unit.Value, "Deleted Customer");
         }
+
     }
 }

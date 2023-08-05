@@ -1,6 +1,4 @@
-﻿using Bank.Shared;
-
-namespace Bank.Infrastructure.Data.Exceptions
+﻿namespace Bank.Infrastructure.Exceptions
 {
     public class NotFoundException : Exception
     {

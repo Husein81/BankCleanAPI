@@ -26,8 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Bank.Application\Bank.Application.csproj" />
     <ProjectReference Include="..\Bank.Domain\Bank.Domain.csproj" />
-    <ProjectReference Include="..\Bank.Shared\Bank.Shared.csproj" />
-    <ProjectReference Include="..\Banks\Bank.Api.csproj" />
   </ItemGroup>
 
 </Project>

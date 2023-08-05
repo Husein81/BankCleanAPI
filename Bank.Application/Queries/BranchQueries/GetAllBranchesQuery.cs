@@ -1,6 +1,7 @@
-﻿using Bank.Application
+﻿using Bank.Application.DTOs;
+using Bank.Shared.Queries;
 
-namespace Bank.Shared.Queries.BranchQueries
-{
-   public record GetAllBranchesQuery : IQuery<List<BranchDTO>>
+namespace Bank.Application.Queries
+    {
+   public record GetAllBranchesQuery : IQuery<List<BranchDTO>>;
 }

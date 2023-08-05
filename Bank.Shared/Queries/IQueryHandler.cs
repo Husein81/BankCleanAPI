@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MediatR;
 namespace Bank.Shared.Queries
 {
-    internal class IQuerHandler
-    {
-    }
+    public interface IQueryHandler<TIn, TOut> : IRequestHandler<TIn, TOut>
+        where TIn : IQuery<TOut>
+    { }
 }

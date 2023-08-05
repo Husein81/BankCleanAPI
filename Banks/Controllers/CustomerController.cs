@@ -3,58 +3,41 @@ using MediatR;
 using Bank.Domain;
 using Bank.Application.DTOs;
 using Bank.Application.Commands;
+using Bank.Application.Repositories;
+using Bank.Application.Commands.CustomerCommands;
+using Bank.Shared;
+using Bank.Application.Queries.CustomerQueries;
 
-
-namespace Banks.Controllers
+namespace Bank.Api.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public CustomerController(AppDbContext context) 
-        {
-            _context = context;
-        }
+        private readonly IMediator _mediator;
+        public CustomerController(IMediator mediator) 
+            => _mediator = mediator;
+
 
         [HttpPost]
-        public async Task<Customer> AddCustomerAsync(string name,string address)
-        {
-            var newcustomer = await _context.Customer.AddAsync(new Customer(name, address));
-            await _context.SaveChangesAsync();
-            return newcustomer.Entity;
-
-        }
+        public async Task<Response<CustomerDTO>> Post(CreateCustomerCommand command,CancellationToken cancellationToken)
+            => await _mediator.Send(command,cancellationToken);
         [HttpPut]
-        public async Task<Customer> UpdateCustomer(int id,string name,string address)
-        {
-            var cust = await _context.Customer.FirstOrDefaultAsync(x => x.Id == id)
-                ??throw new Exception("Not Found");
+        public async Task<Response<CustomerDTO>> Put(UpdateCustomerCommand command, CancellationToken cancellationToken)
+            => await _mediator.Send(command, cancellationToken);
 
-            cust.Update(name, address);
-            _context.Update(cust);
-            await _context.SaveChangesAsync();
-            return cust;
-        }
         [HttpDelete]
-        public async Task DeleteCustomerAsync(int id)
-        {
-            var cust = await _context.Customer.FirstOrDefaultAsync(x =>x.Id == id)
-                ?? throw new Exception("Not Found");
-            _context.Remove(cust);
-            await _context.SaveChangesAsync();
-        }
-        [HttpGet]
-        public async Task<List<Customer>> GetCustomersAsync()
-        {
-            return await _context.Customer.ToListAsync();
-        }
+        public async Task Delete(DeleteCustomerCommand command, CancellationToken cancellationToken)
+            => await _mediator.Send(command, cancellationToken);
+        public async Task<List<CustomerDTO>> Get([FromQuery] GetAllCustomersQuery query, CancellationToken cancellationToken)
+             => await _mediator.Send(query, cancellationToken);
 
-        [HttpGet("GetCustomerId")]
-        public async Task<Customer> GetCustomerByIDAsync(int id)
-        {
-            return await _context.Customer.FirstOrDefaultAsync(x => x.Id == id);
-        }
+        [HttpGet("byId")]
+        public async Task<CustomerDTO> Get([FromQuery] GetCustomerQuery query, CancellationToken cancellationToken)
+            => await _mediator.Send(query, cancellationToken);
+
+
+        
     }
 }
  

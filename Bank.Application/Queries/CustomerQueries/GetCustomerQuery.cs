@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bank.Application.DTOs;
+using Bank.Shared.Queries;
+
 
 namespace Bank.Application.Queries.CustomerQueries
 {
-    internal class GetCustomerQuery
-    {
-    }
+    public record GetCustomerQuery(int Id) : IQuery<CustomerDTO>;
 }

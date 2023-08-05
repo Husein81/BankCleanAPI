@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Bank.Application.Commands.BranchCommands;
+using Bank.Application.DTOs;
+using Bank.Application.Queries;
+using Bank.Application.Queries.BranchQueries;
+using Bank.Shared;
 using MediatR;
-using Bank.Domain;
-using Bank.Application.Commands;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.Api.Controllers
 {
@@ -18,17 +20,13 @@ namespace Bank.Api.Controllers
         [HttpPut]
         public async Task<BranchDTO> UpdateBranch(UpdateBranchCommand command)
             => await _mediator.Send(command);
-        
+
         [HttpGet]
-        public async Task<List<Customer>> GetBranchAsync()
-        {
-            return await _context.Customer.ToListAsync();
-        }
-        [HttpGet("GetBranchById")]
-        public async Task<Branch> GetBranchByIdAsync(int id)
-        {
-            return await _context.Branch.FirstOrDefaultAsync(x => x.Id == id);
-        }
+        public async Task<List<BranchDTO>> Get([FromQuery] GetAllBranchesQuery query,CancellationToken cancellationToken)
+            => await _mediator.Send(query,cancellationToken);
+        [HttpGet("ByID")]
+        public async Task<BranchDTO> Get([FromQuery] GetBranchQuery query, CancellationToken cancellationToken)
+             => await _mediator.Send(query, cancellationToken);
         [HttpDelete]
         public async Task DeleteBranch(DeleteBranchCommand command)
              => await _mediator.Send(command);

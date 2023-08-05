@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using MediatR;
+using Bank.Application.DTOs;
 namespace Bank.Application.Commands.BranchCommands
 {
-    internal class UpdateBranchCommad
-    {
-    }
+    public record UpdateBranchCommand(int id, string name, string address,double assets,List<int> customerID) : IRequest<BranchDTO>;
 }
