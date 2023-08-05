@@ -28,8 +28,18 @@ namespace Bank.Api.Controllers
         public async Task<BranchDTO> Get([FromQuery] GetBranchQuery query, CancellationToken cancellationToken)
              => await _mediator.Send(query, cancellationToken);
         [HttpDelete]
+<<<<<<< HEAD
         public async Task DeleteBranch(DeleteBranchCommand command)
              => await _mediator.Send(command);
       
+=======
+        public async Task DeleteBranch(int id)
+        {
+            var branch=await _context.Branch.FirstOrDefaultAsync(x=>x.Id==id)
+                ??throw new Exception("Not Found");
+            _context.Remove(branch);
+            await _context.SaveChangesAsync();
+        }
+>>>>>>> b15d96dd4e2bb03dbc53deb3e06e7715611a26c1
     }
 }
