@@ -25,15 +25,5 @@ namespace Bank.Infrastructure.Repositories
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
                 ?? throw new NotFoundException(typeof(Customer).Name, id);
 
-<<<<<<< HEAD
-
-      
-
-=======
-        Task<IEnumerable<Customer>> ICustomerRepository.GetWholeByIdAsync(int id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
->>>>>>> d05ac61b5dffe02098b7f0cc918dad2df51aa945
     }
 }
