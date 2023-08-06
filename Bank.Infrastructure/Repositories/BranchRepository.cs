@@ -22,6 +22,6 @@ namespace Bank.Infrastructure.Repositories
         public async Task<Branch> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
             => await _branch.Include(x => x.Customers)
                              .FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
-                ?? throw new NotFoundException(typeof(Branch).Name, id);
+                        ?? throw new NotFoundException(typeof(Branch).Name, id);
     }
 }

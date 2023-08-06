@@ -29,5 +29,5 @@ namespace Bank.Application.Queries.Handlers
             return customerDTO.ToList();
         }
     }
-    }
+    
 }
