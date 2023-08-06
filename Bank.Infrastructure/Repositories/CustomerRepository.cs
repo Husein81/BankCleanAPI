@@ -25,6 +25,8 @@ namespace Bank.Infrastructure.Repositories
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
                 ?? throw new NotFoundException(typeof(Customer).Name, id);
 
-        
+
+      
+
     }
 }
