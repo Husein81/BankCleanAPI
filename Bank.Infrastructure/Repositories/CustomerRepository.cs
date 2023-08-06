@@ -23,5 +23,10 @@ namespace Bank.Infrastructure.Repositories
         public async Task<Customer> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
             => await _customer.Include(x => x.Id).FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
                 ?? throw new NotFoundException(typeof(Customer).Name, id);
+
+        Task<IEnumerable<Customer>> ICustomerRepository.GetWholeByIdAsync(int id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
