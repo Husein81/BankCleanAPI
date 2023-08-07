@@ -1,4 +1,4 @@
-﻿using Bank.Domain;
+﻿using Bank.Domain.Entities;
 using Microsoft.Extensions.Hosting;
 
 namespace Bank.Application.Repositories

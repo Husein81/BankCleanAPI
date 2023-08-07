@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Bank.Domain;
+using Bank.Domain.Entities;
 
 namespace Bank.Infrastructure
 {

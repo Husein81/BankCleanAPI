@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Bank.Domain;
+using Bank.Domain.Entities;
 using Bank.Application.DTOs;
 using Bank.Application.Commands;
 using Bank.Application.Repositories;

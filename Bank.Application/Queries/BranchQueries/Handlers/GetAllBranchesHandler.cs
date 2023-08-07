@@ -1,11 +1,10 @@
 ﻿using Bank.Application.DTOs;
 using Bank.Shared.Queries;
 using Bank.Application.Repositories;
-using Bank.Domain;
 using Mapster;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Hosting;
-
+using Bank.Domain.Entities;
 
 namespace Bank.Application.Queries.Handlers
 {

@@ -1,10 +1,9 @@
 ﻿using Bank.Application.Repositories;
-using Bank.Domain;
 
 using SQLitePCL;
 using Microsoft.EntityFrameworkCore;
 using Bank.Infrastructure.Exceptions;
-
+using Bank.Domain.Entities;
 
 namespace Bank.Infrastructure.Repositories
 {
@@ -18,11 +17,10 @@ namespace Bank.Infrastructure.Repositories
             _customer = _context.Set<Customer>();
         }
         public async Task<IEnumerable<Customer>> GetWholeAsync(CancellationToken cancellationToken)
-            => await _customer.Include(x => x.Branches).ToListAsync(cancellationToken);
+            => await _customer.ToListAsync(cancellationToken);
 
         public async Task<Customer> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
-            => await _customer.Include(x => x.Branches)
-            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
+            => await _customer.FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
                 ?? throw new NotFoundException(typeof(Customer).Name, id);
 
     }

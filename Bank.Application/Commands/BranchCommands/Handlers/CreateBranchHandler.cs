@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Mapster;
-using Bank.Domain;
 using Bank.Application.Commands.BranchCommands;
 using Bank.Application.DTOs;
 using Bank.Application.Commands;
 using Bank.Application.Repositories;
 using Bank.Shared.Commands;
 using Bank.Shared;
+using Bank.Domain.Entities;
 
 namespace Bank.Application.Commands.BranchCommands.Handlers
 {

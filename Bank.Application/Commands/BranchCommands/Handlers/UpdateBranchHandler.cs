@@ -1,7 +1,7 @@
 ﻿using Bank.Application.Commands.CustomerCommands;
 using Bank.Application.DTOs;
 using Bank.Application.Repositories;
-using Bank.Domain;
+using Bank.Domain.Entities;
 using Bank.Shared;
 using Bank.Shared.Commands;
 using Mapster;

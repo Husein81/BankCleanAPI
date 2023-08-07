@@ -2,8 +2,8 @@
 using Bank.Application.Repositories;
 using Bank.Shared;
 using Bank.Shared.Commands;
-using Bank.Domain;
 using Mapster;
+using Bank.Domain.Entities;
 
 namespace Bank.Application.Commands.CustomerCommands.Handlers
 {

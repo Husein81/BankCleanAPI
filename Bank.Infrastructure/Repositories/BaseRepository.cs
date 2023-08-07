@@ -1,6 +1,4 @@
-﻿using MediatR;
-using SQLitePCL;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Bank.Application.Repositories;
 using Bank.Domain;
 using Bank.Infrastructure.Exceptions;

@@ -3,7 +3,7 @@ using Bank.Shared.Queries;
 using Bank.Application.Queries;
 using Bank.Application.Repositories;
 using Mapster;
-using Bank.Domain;
+using Bank.Domain.Entities;
 
 namespace Bank.Application.Queries.BranchQueries.Handlers
 {

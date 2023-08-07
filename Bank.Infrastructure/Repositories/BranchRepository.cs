@@ -1,9 +1,9 @@
 ﻿using Bank.Application.Repositories;
-using Bank.Domain;
 using SQLitePCL;
 using Microsoft.EntityFrameworkCore;
 using Bank.Infrastructure.Exceptions;
 using Microsoft.Extensions.Hosting;
+using Bank.Domain.Entities;
 
 namespace Bank.Infrastructure.Repositories
 {
@@ -17,7 +17,7 @@ namespace Bank.Infrastructure.Repositories
             _branch = _context.Set<Branch>();
         }
         public async Task<IEnumerable<Branch>> GetWholeAsync(CancellationToken cancellationToken)
-            => await _branch.Include(x=>x.Customers).ToListAsync(cancellationToken);
+            => await _branch.ToListAsync(cancellationToken);
 
         public async Task<Branch> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
             => await _branch.Include(x => x.Customers)

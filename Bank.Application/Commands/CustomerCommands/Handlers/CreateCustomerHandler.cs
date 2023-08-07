@@ -4,9 +4,6 @@ using Bank.Application.Repositories;
 using Bank.Domain;
 using Bank.Shared;
 using Bank.Shared.Commands;
-using Bank.Application.Commands;
-using Bank.Application.DTOs;
-using Bank.Application.Repositories;
 using MediatR;
 using Mapster;
 

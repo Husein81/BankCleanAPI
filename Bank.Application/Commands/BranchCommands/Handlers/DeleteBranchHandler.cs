@@ -2,7 +2,6 @@
 using Bank.Application.Commands;
 using Bank.Shared;
 using Bank.Shared.Commands;
-
 using MediatR;
 
 

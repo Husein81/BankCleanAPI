@@ -3,12 +3,11 @@ using Bank.Shared.Queries;
 using Bank.Application.Queries;
 using Bank.Application.Repositories;
 using Mapster;
-using Bank.Domain;
-using Bank.Shared.Queries;
+using Bank.Domain.Entities;
 
 namespace Bank.Application.Queries.CustomerQueries.Handlers
 {
-    internal class GetCustomerHandler : IQueryHandler<GetAllCustomersQuery, CustomerDTO>
+    internal class GetCustomerHandler : IQueryHandler<GetCustomerQuery, CustomerDTO>
     {
         public readonly ICustomerRepository _customer;
         public GetCustomerHandler(ICustomerRepository customer)

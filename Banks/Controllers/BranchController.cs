@@ -14,11 +14,12 @@ namespace Bank.Api.Controllers
         public BranchController(IMediator mediator)
              => _mediator = mediator;
         [HttpPost]
-        public async Task<BranchDTO> AddBranch(CreateBranchCommand command)
+        public async Task<Response<BranchDTO>> AddBranch(CreateBranchCommand command)
              => await _mediator.Send(command);
+        
 
         [HttpPut]
-        public async Task<BranchDTO> UpdateBranch(UpdateBranchCommand command)
+        public async Task<Response<BranchDTO>> UpdateBranch(UpdateBranchCommand command)
             => await _mediator.Send(command);
 
         [HttpGet]
@@ -28,18 +29,13 @@ namespace Bank.Api.Controllers
         public async Task<BranchDTO> Get([FromQuery] GetBranchQuery query, CancellationToken cancellationToken)
              => await _mediator.Send(query, cancellationToken);
         [HttpDelete]
-<<<<<<< HEAD
+
         public async Task DeleteBranch(DeleteBranchCommand command)
              => await _mediator.Send(command);
-      
-=======
-        public async Task DeleteBranch(int id)
-        {
-            var branch=await _context.Branch.FirstOrDefaultAsync(x=>x.Id==id)
-                ??throw new Exception("Not Found");
-            _context.Remove(branch);
-            await _context.SaveChangesAsync();
-        }
->>>>>>> b15d96dd4e2bb03dbc53deb3e06e7715611a26c1
+
+
+        public async Task DeleteBranch(DeleteBranchCommand command, CancellationToken cancellationToken)
+           => await _mediator.Send(command, cancellationToken);
+
     }
 }

@@ -3,5 +3,5 @@ using Bank.Shared.Queries;
 
 namespace Bank.Application.Queries.CustomerQueries
 {
-    public record GetAllCustomersQuery : IQuery<List<CustomerDTO>>;
+    public record GetAllCustomersQuery() : IQuery<List<CustomerDTO>>;
 }
