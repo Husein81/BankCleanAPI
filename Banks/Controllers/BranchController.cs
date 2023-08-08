@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.Api.Controllers
 {
+    [ApiController]
+    [Route("[Controller]")]
     public class BranchController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -32,10 +34,5 @@ namespace Bank.Api.Controllers
 
         public async Task DeleteBranch(DeleteBranchCommand command)
              => await _mediator.Send(command);
-
-
-        public async Task DeleteBranch(DeleteBranchCommand command, CancellationToken cancellationToken)
-           => await _mediator.Send(command, cancellationToken);
-
     }
 }

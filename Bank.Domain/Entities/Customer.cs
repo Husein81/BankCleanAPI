@@ -6,6 +6,8 @@
         public string Name { get; set; }
         public string Address { get; set; }
         public List<Branch> Branches { get; set; } = new();
+
+        private Customer() { }
         public Customer(string name, string address, List<Branch> branches)
         {
             Name = name;

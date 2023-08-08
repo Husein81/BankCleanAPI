@@ -29,6 +29,8 @@ namespace Bank.Api.Controllers
         [HttpDelete]
         public async Task Delete(DeleteCustomerCommand command, CancellationToken cancellationToken)
             => await _mediator.Send(command, cancellationToken);
+
+        [HttpGet]
         public async Task<List<CustomerDTO>> Get([FromQuery] GetAllCustomersQuery query, CancellationToken cancellationToken)
              => await _mediator.Send(query, cancellationToken);
 
