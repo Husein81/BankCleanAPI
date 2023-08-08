@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using FluentValidation;
+using Bank.Domain.Entities;
 namespace Bank.Domain.Validation
 {
-    internal class CustomerValidation
+    public class CustomerValidator : AbstractValidator<Customer>
     {
+        public CustomerValidator() 
+        { 
+            RuleFor( x => x.Id ).NotEmpty();
+            RuleFor( x => x.Name ).NotEmpty().MaximumLength(25);
+            RuleFor( x =>x.Branches).NotEmpty();
+        }
     }
 }

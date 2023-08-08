@@ -1,13 +1,11 @@
 ﻿using Bank.Application.Commands.CustomerCommands;
 using Bank.Application.DTOs;
 using Bank.Application.Repositories;
-using Bank.Domain;
 using Bank.Shared;
 using Bank.Shared.Commands;
 using MediatR;
 using Mapster;
-
-
+using Bank.Domain.Entities;
 
 namespace Bank.Application.Commands.CustomerCommands.Handlers
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Bank.Application.Repositories;
-using Bank.Domain;
+using Bank.Domain.Entities;
 using Bank.Infrastructure.Exceptions;
 
 
@@ -39,6 +39,7 @@ namespace Bank.Infrastructure.Repositories
             await _context.SaveChangesAsync(cancellationToken);
             return updatedEntity.Entity;
         }
-
+        public async Task<List<TEntity>> ToList()
+            => await _dbSet.ToListAsync();
     }
 }
